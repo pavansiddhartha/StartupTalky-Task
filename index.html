@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinner Wheel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+
+
+    <div class="popup" id="popup-spin">
+        <button id="close-spin">&times;</button>
+        <h2>Spin to Win</h2>
+        
+
+        <button type="button" id="spin" data-toggle="modal" data-target="#exampleModal">SPIN</button>
+        <div class="arrow"></div>
+        <div class="box" id="box">
+
+            <div class="font sector div1 bg2">
+                <h6> 50% OFF</h6>
+            </div>
+            <div class="font sector div2 bg1">
+                <h6>20% OFF</h6>
+            </div>
+            <div class="font sector div3 bg2">
+                <h6>FREE SHIPPING</h6>
+            </div>
+            <div class="font sector div4 bg1">
+                <h6>50% OFF</h6>
+            </div>
+            <div class="font sector div5 bg2">
+                <h6>20% OFF</h6>
+            </div>
+            <div class="font sector div6 bg1">
+                <h6>FREE SHIPPING</h6>
+            </div>
+            <div class="font sector div7 bg2">
+                <h6>50% OFF</h6>
+            </div>
+            <div class="font sector div8 bg1">
+                <h6>20% OFF</h6>
+            </div>
+            <div class="font sector div9 bg2">
+                <h6>FREE SHIPPING</h6>
+            </div>
+            <div class="font sector div10 bg1">
+                <h6>50% OFF</h6>
+            </div>
+            <div class="font sector div11 bg2">
+                <h6>20% OFF</h6>
+            </div>
+            <div class="font sector div12 bg1">
+                <h6>FREE SHIPPING</h6>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="popup" id="popup-reward">
+        <button id="close-reward">&times;</button>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        let container = document.querySelector(".box");
+        let btn = document.getElementById("spin");
+        let number = Math.ceil(Math.random() * 1000);
+        let containerdeg = 0
+        btn.onclick = function () {
+            resulttext=document.querySelector("#result")
+            containerdeg = (number) % 90
+            container.style.transform = "rotate(" + number + "deg)";
+            setTimeout(function () {
+                document.querySelector("#popup-reward").style.display = "block";
+                if (containerdeg <= 15 || containerdeg > 75) {
+                    resulttext.innerHTML= "Congrats!! You got Free Shipping reward"
+                }
+                else if (containerdeg <= 45) {
+                    resulttext.innerHTML = "Congrats!! You got Free 20% OFF reward"
+                }
+                else {
+                    resulttext.innerHTML = "Congrats!! You got Free 50% OFF reward"
+                }
+            }, 5500)
+
+
+            number += Math.ceil(Math.random() * 1000);
+
+        }
+        window.addEventListener("load", function () {
+            setTimeout(
+                function open(event) {
+                    document.querySelector("#popup-spin").style.display = "block";
+                },
+                1300
+            )
+        });
+        document.querySelector("#close-spin").addEventListener("click", function () {
+            document.querySelector("#popup-spin").style.display = "none";
+        });
+        document.querySelector("#close-reward").addEventListener("click", function () {
+                document.querySelector("#popup-reward").style.display = "none";
+            });
+
+    </script>
+</body>
+
+</html>
